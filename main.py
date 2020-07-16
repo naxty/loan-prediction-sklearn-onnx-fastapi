@@ -8,16 +8,15 @@ from pydantic import BaseModel
 
 import numpy as np
 import onnxruntime as rt
-sess = rt.InferenceSession("test.onnx")
+
+sess = rt.InferenceSession("model/loan_model.onnx")
 
 numeric_features = ['applicantincome', 'coapplicantincome', 'loanamount',
        'loan_amount_term', 'credit_history']
-categorical_features = ['loan_id', 'gender', 'married', 'dependents', 'education',
+categorical_features = ['married', 'dependents', 'education',
        'self_employed', 'property_area']
 
 class LoanFeatures(BaseModel):
-    loan_id: str
-    gender: str
     married: str
     dependents: str
     education: str
